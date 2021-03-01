@@ -10,4 +10,5 @@ To hit be sure that I can hit at least the minimum benchmark along with the othe
  - Create a basic graphical template in C.
  - Develop a script with basic directory and file manipulation (using tee.c as a basis should make this task simpler).
  - Set up a MongoDB database that I can GET from and POST to with C.
+
 All of the aformentioned tasks will be done by me and will be initially showcased in individual C files with a working demonstration as a proof of concept for the culmulative idea.
