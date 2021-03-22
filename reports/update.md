@@ -12,5 +12,5 @@ As was mentioned before work is underway to get a C server set up so that messag
 
 With each update regarding DynamiChat there has been an increase in morale to continue innovating upon the project, and things only look up from here.
 
-GitHub Repository: https://github.com/toluooshy/SoftSysDynamiChat
+GitHub Repository: https://github.com/toluooshy/SoftSysDynamiChat    
 Trello Board: https://trello.com/b/YbTsRhUA/dynamichat
