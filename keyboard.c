@@ -4,24 +4,7 @@
    This program allows the user to enter input a string to be
    atored into the file specified by the '-a' append tag.
 */
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <time.h>
-#include <assert.h>
-
-#define KF   "\x1B[30m"
-#define RF   "\x1B[31m"
-#define GF   "\x1B[32m"
-#define YF   "\x1B[33m"
-#define BF   "\x1B[34m"
-#define MF   "\x1B[35m"
-#define CF   "\x1B[36m"
-#define WF   "\x1B[37m"
-#define XF   "\x1B[39m"
-
-char *datetime;
-char cmd[1024];
+#include "common.h"
 
 void getdatetime(){
   time_t t = time(NULL);
@@ -40,7 +23,8 @@ int main(int argc, char *argv[])
   getdatetime();
 
   char *filename = "";
-  char *num;
+  char *id;
+  char *usr;
   char input;
   char *str;
   char *message;
@@ -49,10 +33,13 @@ int main(int argc, char *argv[])
   int totalchars;
   int i =1;
 
-  while ((input = getopt(argc, argv, "a:")) != EOF) {
+  while ((input = getopt(argc, argv, "i:u:")) != EOF) {
     switch (input) {
-    case 'a':
-      num = optarg;
+    case 'i':
+      id = optarg;
+      break;
+    case 'u':
+      usr = optarg;
       break;
     default:
       fprintf(stderr, "Unknown option: '%s'\n", optarg);
@@ -69,10 +56,11 @@ int main(int argc, char *argv[])
 
     printf(BF "SEND:\n" XF);
     fgets(message, 1024, stdin);
+    char postquery[50];
 
     if (strcmp(strtok(message,"\n"), "") != 0) {
-      doc = fopen(num, "a+");
-      fprintf(doc, "%s", hostname);
+      doc = fopen(id, "a+");
+      fprintf(doc, "%s", usr);
       fprintf(doc, "[");
       fprintf(doc, "%s", datetime);
       fprintf(doc, "]:\n");
@@ -80,6 +68,17 @@ int main(int argc, char *argv[])
       fprintf(doc, "\n");
       fprintf(doc, "\n");
       fclose(doc);
+
+      strcpy(postquery, "./POST ");
+      strcat(postquery, id);
+      strcat(postquery, " \"");
+      strcat(postquery, usr);
+      strcat(postquery, "\" \"");
+      strcat(postquery, datetime);
+      strcat(postquery, "\" \"");
+      strcat(postquery, message);
+      strcat(postquery, "\"");
+      system(postquery);
     }
   }
   return 0;
