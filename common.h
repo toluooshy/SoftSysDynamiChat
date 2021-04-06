@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <time.h>
 #include <assert.h>
+#include <sys/ioctl.h>
+#include <ncurses.h>
 
 #define KF   "\x1B[30m"
 #define RF   "\x1B[31m"
@@ -14,6 +16,7 @@
 #define CF   "\x1B[36m"
 #define WF   "\x1B[37m"
 #define XF   "\x1B[39m"
+#define gotoxy(x,y) printf("\033[%d;%dH", (y), (x))
 
 char *datetime;
 char cmd[1024];

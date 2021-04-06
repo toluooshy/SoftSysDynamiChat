@@ -8,9 +8,42 @@
 
 int main(int argc, char *argv[])
 {
+  WINDOW *splashscreen;
   system("xdotool getactivewindow windowmove 100 0");
   system("echo -en \"\033]0;DynamiChat\a\"");
   system("resize -s 22 120");
+
+  initscr();
+	splashscreen = newwin(10, 30, 25, 10);
+	start_color();
+	init_pair(1, COLOR_WHITE, COLOR_BLUE);
+  init_pair(2, COLOR_BLACK, COLOR_BLACK);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
+	init_pair(4, COLOR_WHITE, COLOR_BLACK);
+  bkgd(COLOR_PAIR(2));
+	attron(COLOR_PAIR(1));
+	mvprintw(1, 28, "                                                                ");
+	mvprintw(2, 28, "  _____                             _  _____ _             _    ");
+  mvprintw(3, 28, " |  __ \\_    _ ___  _____ ________ (_)/ ____| |__  _______| |_  ");
+  mvprintw(4, 28, " | |  \\ \\\\  / | _ \\/  _  |  _   _ \\| | /    |  _ \\/  _  |_   _| ");
+  mvprintw(5, 28, " | |__/ / \\/ / / \\ | |_| | / \\ / \\ | | \\____| / \\ | |_| | | |_  ");
+  mvprintw(6, 28, " |_____/ \\  /|_| |_|__/\\_|_| |_| |_|_|\\_____|_| |_|__/\\_| |___| ");
+  mvprintw(7, 28, "        _/ /                                                    ");
+  mvprintw(8, 28, "        \\_/                                                     ");
+  mvprintw(9, 28, "                                                                ");
+	attroff(COLOR_PAIR(1));
+	attron(COLOR_PAIR(3));
+	mvprintw(10, 28, "                  Secure communications, all from your terminal.");
+	attroff(COLOR_PAIR(3));
+	attron(A_BLINK);
+	attron(COLOR_PAIR(4));
+	mvprintw(13, 28, "                  (press any key to continue)                  ");
+	attroff(COLOR_PAIR(4));
+	attroff(A_BLINK);
+	refresh();
+	getch();
+	endwin();
+
   system("clear");
   system("clear");
 
@@ -30,10 +63,27 @@ int main(int argc, char *argv[])
   FILE *fp;
   char path[1024];
 
-  printf(GF "ENTER YOUR SESSION USERNAME:\n" BF);
+  printf(GF
+    "\n\n\n\n\n\n"
+    "                                              ENTER YOUR SESSION USERNAME:\n" WF
+    "                           ┌─────────────────────────────────────────────────────────────────┐\n"
+    "                           │                                                                 │\n"
+    "                           └─────────────────────────────────────────────────────────────────┘\n"
+  BF);
+  gotoxy(30, 9);
   fgets(usr, 1024, stdin);
 
-  printf(GF "ENTER CHATROOM ID:\n" BF);
+  system("clear");
+  system("clear");
+
+  printf(GF
+    "\n\n\n\n\n\n"
+    "                                                   ENTER CHATROOM ID:\n" WF
+    "                           ┌─────────────────────────────────────────────────────────────────┐\n"
+    "                           │                                                                 │\n"
+    "                           └─────────────────────────────────────────────────────────────────┘\n"
+  BF);
+  gotoxy(30, 9);
   fgets(id, 1024, stdin);
 
   strcat(chatroomcmd, strtok(id,"\n"));
@@ -76,7 +126,7 @@ int main(int argc, char *argv[])
     int openbracket = '[';
     int closebracket = ']';
     int newline = '\n';
-    
+
     //int val = atoi("[");
     doc = fopen(strtok(id,"\n"), "r");
     if(d > totalchars) {
