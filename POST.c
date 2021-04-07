@@ -8,7 +8,7 @@ int main (int argc, char *argv[]) {
   bson_error_t error;
   bson_oid_t oid;
   bson_t *doc;
-  
+
   mongoc_init ();
 
   client = mongoc_client_new ("mongodb+srv://toluooshy:DynamiChat123@dynamichat.h3mb4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");

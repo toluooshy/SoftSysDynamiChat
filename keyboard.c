@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     printf(BF "                                                                                                            SEND (enter)");
     gotoxy(2, 6);
     fgets(message, 1024, stdin);
-    char postquery[50];
+    char postquery[64];
 
     if (strcmp(strtok(message,"\n"), "") != 0) {
       doc = fopen(id, "a+");

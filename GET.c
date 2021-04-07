@@ -21,7 +21,7 @@ int main (int argc, char *argv[]) {
   client = mongoc_client_new ("mongodb+srv://toluooshy:DynamiChat123@dynamichat.h3mb4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
   collection = mongoc_client_get_collection (client, "chats", argv[1]);
   filter = BCON_NEW ("message", BCON_REGEX("","s"));
-  opts = BCON_NEW ("limit", BCON_INT64 (100));
+  opts = BCON_NEW ("limit", BCON_INT64 (1000));
   cursor = mongoc_collection_find_with_opts (collection, filter, opts, NULL);
 
   f = fopen(argv[1], "w+");

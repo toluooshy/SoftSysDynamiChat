@@ -8,10 +8,10 @@
 
 int main(int argc, char *argv[])
 {
+  system("resize -s 22 120");
   WINDOW *splashscreen;
   system("xdotool getactivewindow windowmove 100 0");
   system("echo -en \"\033]0;DynamiChat\a\"");
-  system("resize -s 22 120");
 
   initscr();
 	splashscreen = newwin(10, 30, 25, 10);
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
   printf("\n");
 
   while (1) {
-    char getquery[50];
+    char getquery[64];
     strcpy(getquery, "./GET ");
     strcat(getquery, id);
     system(getquery);
